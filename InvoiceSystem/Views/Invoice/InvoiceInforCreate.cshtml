@@ -1,0 +1,110 @@
+﻿@model InvoiceSystem.Models.InvoiceViewModel
+
+@{
+    ViewData["Title"] = "InvoiceInforCreate";
+}
+
+<h1>InvoiceInforCreate</h1>
+
+<h4>InvoiceViewModel</h4>
+<hr />
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Product)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Discription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Qty)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Tax)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Total)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Details)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Discription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Qty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tax)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <label>Invoice Note:</label>
+    <textarea maxlength="1000" placeholder="Invocie Note(Max 1000 charaters)"></textarea>
+
+    <table>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Details[0].SubTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.Details[0].SubTotal)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Details[0].TaxTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.Details[0].TaxTotal)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Details[0].GrandTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.Details[0].GrandTotal)
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <label>Attachement:</label>
+    <input type="file" name="files" multiple />
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
